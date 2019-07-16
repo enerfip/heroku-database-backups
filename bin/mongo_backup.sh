@@ -25,16 +25,14 @@ MONGO_URI=$(heroku config:get MONGODB_URI -a $APP)
 
 BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M")-$APP.mongodump"
 
-/usr/bin/mongodump --uri $MONGO_URI -o $BACKUP_FILE_NAME
+mongodump --uri $MONGO_URI -o $BACKUP_FILE_NAME
 
-heroku pg:backups capture $DATABASE --app $APP
-curl -o $BACKUP_FILE_NAME `heroku pg:backups:url --app $APP`
 FINAL_FILE_NAME=$BACKUP_FILE_NAME
 
 if [[ -z "$NOGZIP" ]]; then
-  gzip $BACKUP_FILE_NAME
-  rm $BACKUP_FILE_NAME
-  FINAL_FILE_NAME=$BACKUP_FILE_NAME.gz
+  tar -zcvf $BACKUP_FILE_NAME.tgz $BACKUP_FILE_NAME
+  rm -Rf $BACKUP_FILE_NAME
+  FINAL_FILE_NAME=$BACKUP_FILE_NAME.tgz
 fi
 
 if [[ "$GPG_PASSPHRASE" ]]; then

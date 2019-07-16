@@ -76,4 +76,10 @@ APP=your-app DATABASE=HEROKU_POSTGRESQL_NAVY_URL /app/bin/backup.sh
 
 In the above command, APP is the name of your app within heroku that contains the database.  DATABASE is the name of the database you would like to capture and backup.  In our setup, DATABASE actually points to a follower database to avoid any impact to our users.  Both of these environment variables can also be set within your heroku config rather than passing into the script invocation.
 
+## Backup MongoDB databases (mLab only for the moment)
 
+```
+APP=your-app /app/bin/mongo_backup.sh
+```
+
+Uses `https://github.com/o5r/heroku-buildpack-mongo.git` buildpack for mongodb tools
