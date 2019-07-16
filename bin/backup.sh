@@ -23,6 +23,8 @@ curl https://s3.amazonaws.com/aws-cli/awscli-bundle.zip -o awscli-bundle.zip
 unzip awscli-bundle.zip
 chmod +x ./awscli-bundle/install
 ./awscli-bundle/install -i /tmp/aws
+rm -Rf ./awscli-bundle
+rm awscli-bundle.zip
 
 BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M")-$APP-$DATABASE.dump"
 
@@ -35,7 +37,11 @@ if [[ -z "$NOGZIP" ]]; then
   FINAL_FILE_NAME=$BACKUP_FILE_NAME.gz
 fi
 
+if [[ "$GPG_PASSPHRASE" ]]; then
+  gpg -c --batch --passphrase $GPG_PASSPHRASE $FINAL_FILE_NAME
+  FINAL_FILE_NAME=$FINAL_FILE_NAME.gpg
+fi
+
 /tmp/aws/bin/aws s3 cp $FINAL_FILE_NAME s3://$S3_BUCKET_PATH/$APP/$DATABASE/$FINAL_FILE_NAME
 
 echo "backup $FINAL_FILE_NAME complete"
-

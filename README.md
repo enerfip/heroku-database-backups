@@ -49,6 +49,13 @@ heroku config:add S3_BUCKET_PATH=my-db-backup-bucket/backups -a my-database-back
 ```  
 Be careful when setting the S3_BUCKET_PATH to leave off a trailing forward slash.  Amazon console s3 browser will not be able to locate your file if your directory has "//" (S3 does not really have directories.).
 
+You may add a GPG passphrase if you want an extra layer of security,
+your backup files will be encrypted with this passphrase before being sent to Amazon:
+
+```
+heroku config:add GPG_PASSPHRASE="SeCrEtPasSpHrasE" -a my-database-backups
+```
+
 Finally, we need to add heroku scheduler and call [backup.sh](https://github.com/kbaum/heroku-database-backups/blob/master/bin/backup.sh) on a regular interval with the appropriate database and app.
 
 ```
