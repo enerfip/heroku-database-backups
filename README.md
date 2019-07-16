@@ -31,8 +31,10 @@ heroku config:add HEROKU_API_KEY=`heroku auth:token` -a my-database-backups
 This creates a token that will quietly expire in one year. To create a long-lived authorization token instead, do this:
 
 ```
-heroku config:add HEROKU_API_KEY=`heroku authorizations:create -S -d my-database-backups` -a my-database-backups
+heroku config:add HEROKU_API_KEY=`heroku authorizations:create -S -s read -d my-database-backups` -a my-database-backups
 ```
+
+(NOTE: this authorization token will allow only read operations)
 
 Next we need to add the amazon key and secret.
 
