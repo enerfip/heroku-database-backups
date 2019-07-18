@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 FINAL_FILE_NAME=$BACKUP_FILE_NAME
 
 if [[ -z "$NOGZIP" ]]; then
@@ -14,14 +15,14 @@ if [[ "$GPG_PASSPHRASE" ]]; then
   FINAL_FILE_NAME=$FINAL_FILE_NAME.gpg
 fi
 
-/tmp/aws/bin/aws s3 cp $FINAL_FILE_NAME s3://$S3_BUCKET_PATH/$APP/$FINAL_FILE_NAME
+aws s3 cp $FINAL_FILE_NAME s3://$S3_BUCKET_PATH/$APP/$FINAL_FILE_NAME
 
 if [ "$(date +%d)" = 01 ]; then
   BACKUP_TAG="monthly"
 else
   BACKUP_TAG="daily"
 fi
-/tmp/aws/bin/aws s3api put-object-tagging --bucket $S3_BUCKET_PATH --key $APP/$FINAL_FILE_NAME --tagging "TagSet=[{Key=backupPeriod,Value=$BACKUP_TAG}]"
+aws s3api put-object-tagging --bucket $S3_BUCKET_PATH --key $APP/$FINAL_FILE_NAME --tagging "TagSet=[{Key=backupPeriod,Value=$BACKUP_TAG}]"
 rm $FINAL_FILE_NAME
 
 echo "backup $FINAL_FILE_NAME complete"

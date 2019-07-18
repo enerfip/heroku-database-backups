@@ -17,7 +17,3 @@ if [[ -z "$S3_BUCKET_PATH" ]]; then
   echo "Missing S3_BUCKET_PATH variable which must be set the directory in s3 where you would like to store your database backups"
   exit 1
 fi
-
-test -f /tmp/aws/bin/aws || ./bin/install_aws.sh
-
-

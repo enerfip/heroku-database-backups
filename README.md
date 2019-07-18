@@ -9,10 +9,17 @@ First create a project on heroku.
 ```
 heroku create my-database-backups
 ```
-Add the heroku-buildpack-cli:
+Add the heroku-buildpack-cli and the AWS cli buildpack:
 
 ```
 heroku buildpacks:add https://github.com/heroku/heroku-buildpack-cli -a  my-database-backups
+heroku buildpacks:add heroku-community/awscli -a my-database-backups
+```
+
+If you plan to backup Mlab MongoDB databases as well, add the mongodb buildpack
+
+```
+heroku buildpacks:add https://github.com/o5r/heroku-buildpack-mongo -a my-database-backups
 ```
 
 Next push this project to your heroku projects git repository.
@@ -94,5 +101,3 @@ This will just copy the latest database backup to S3
 ```
 APP=your-app /app/bin/mongo_backup.sh
 ```
-
-Uses `https://github.com/o5r/heroku-buildpack-mongo.git` buildpack for mongodb tools
