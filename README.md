@@ -78,6 +78,17 @@ APP=your-app DATABASE=HEROKU_POSTGRESQL_NAVY_URL /app/bin/backup.sh
 
 In the above command, APP is the name of your app within heroku that contains the database.  DATABASE is the name of the database you would like to capture and backup.  In our setup, DATABASE actually points to a follower database to avoid any impact to our users.  Both of these environment variables can also be set within your heroku config rather than passing into the script invocation.
 
+## Backup large databases
+
+If you have quite a large database plan with continuous protection already enabled, logical backups are likely to fail.
+In that cas you can rely on Heroku continuous backup and use that alternative script:
+
+```
+APP=your-app ./bin/fetch_latest_backup.sh
+```
+
+This will just copy the latest database backup to S3
+
 ## Backup MongoDB databases (mLab only for the moment)
 
 ```
