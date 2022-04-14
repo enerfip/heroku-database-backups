@@ -26,3 +26,7 @@ fi
 if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
   KEEP_ONE_BACKUP_PER_WEEK=false
 fi
+
+if [[ -z "$KEEP_ONE_BACKUP_PER_DAY" ]]; then
+  KEEP_ONE_BACKUP_PER_DAY=false
+fi

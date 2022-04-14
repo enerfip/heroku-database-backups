@@ -14,6 +14,8 @@ fi
 
 if [ $KEEP_ONE_BACKUP_PER_WEEK != false ]; then
   BACKUP_FILE_NAME="$(date +"%Y-%U")-$APP-$DATABASE.dump"
+elif [ $KEEP_ONE_BACKUP_PER_DAY != false ]; then
+  BACKUP_FILE_NAME="$(date +"%Y-%m-%d")-$APP-$DATABASE.dump"
 else
   BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M")-$APP-$DATABASE.dump"
 fi
