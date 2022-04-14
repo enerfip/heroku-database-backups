@@ -12,7 +12,11 @@ if [ $MOD != 0 ]; then
   exit 0
 fi
 
-BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M")-$APP-$DATABASE.dump"
+if [ $KEEP_ONE_BACKUP_PER_WEEK != false ]; then
+  BACKUP_FILE_NAME="$(date +"%Y-%U")-$APP-$DATABASE.dump"
+else
+  BACKUP_FILE_NAME="$(date +"%Y-%m-%d-%H-%M")-$APP-$DATABASE.dump"
+fi
 
 heroku pg:backups capture $DATABASE --app $APP
 curl -o $BACKUP_FILE_NAME `heroku pg:backups:url --app $APP`

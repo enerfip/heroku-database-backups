@@ -22,3 +22,7 @@ if [[ -z "$S3_BUCKET_PATH" ]]; then
   echo "Missing S3_BUCKET_PATH variable which must be set the directory in s3 where you would like to store your database backups"
   exit 1
 fi
+
+if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
+  KEEP_ONE_BACKUP_PER_WEEK=false
+fi
