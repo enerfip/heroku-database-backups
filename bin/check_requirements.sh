@@ -23,10 +23,3 @@ if [[ -z "$S3_BUCKET_PATH" ]]; then
   exit 1
 fi
 
-if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
-  KEEP_ONE_BACKUP_PER_WEEK=false
-fi
-
-if [[ -z "$KEEP_ONE_BACKUP_PER_DAY" ]]; then
-  KEEP_ONE_BACKUP_PER_DAY=false
-fi

@@ -15,6 +15,18 @@ else
   echo "It's backup time!"
 fi
 
+if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
+  KEEP_ONE_BACKUP_PER_WEEK=false
+else
+  KEEP_ONE_BACKUP_PER_WEEK=true
+fi
+
+if [[ -z "$KEEP_ONE_BACKUP_PER_DAY" ]]; then
+  KEEP_ONE_BACKUP_PER_DAY=false
+else
+  KEEP_ONE_BACKUP_PER_DAY=true
+fi
+
 if [ $KEEP_ONE_BACKUP_PER_WEEK != false ]; then
   BACKUP_FILE_NAME="$(date +"%Y-%U")-$APP-$DATABASE.dump"
 elif [ $KEEP_ONE_BACKUP_PER_DAY != false ]; then
