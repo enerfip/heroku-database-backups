@@ -1,6 +1,5 @@
 #!/bin/bash
 
-2>&1
 set -e
 
 ./bin/check_requirements.sh
@@ -10,7 +9,7 @@ MOD=$(expr $HOUR % 6)
 
 if [ $MOD != 0 ]; then
   echo "Scheduled only every 6 hours"
-#  exit 0
+  exit 0
 else
   echo "It's backup time!"
 fi
