@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+2>&1
 
 ./bin/check_requirements.sh
 
@@ -9,7 +10,7 @@ MOD=$(expr $HOUR % 6)
 
 if [ $MOD != 0 ]; then
   echo "Scheduled only every 6 hours"
-  exit 0
+  # exit 0
 else
   echo "It's backup time!"
 fi
@@ -37,7 +38,9 @@ fi
 echo "*** capturing $DATABASE on $APP and store it to $BACKUP_FILE_NAME ***"
 
 heroku pg:backups capture $DATABASE --app $APP
-curl -o $BACKUP_FILE_NAME `heroku pg:backups:url --app $APP`
+LATEST_BACKUP=$(heroku pg:backups --app $APP | grep $DATABASE | head -n 1 | awk '{ print $1 }')
+BACKUP_URL=$(heroku pg:backups:url $LATEST_BACKUP --app $APP)
+curl -o $BACKUP_FILE_NAME $BACKUP_URL
 
 echo "*** capture done. Now uploading to S3 ***"
 
