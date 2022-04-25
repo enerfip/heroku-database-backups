@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+#set -e
 2>&1
 
 source ./bin/check_requirements.sh
