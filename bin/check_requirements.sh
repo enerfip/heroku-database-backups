@@ -23,3 +23,8 @@ if [[ -z "$S3_BUCKET_PATH" ]]; then
   exit 1
 fi
 
+echo "- APP is set to $APP"
+echo "- DATABASE is set to $DATABASE"
+echo "- FILENAME_PREFIX is set to $FILENAME_PREFIX"
+echo "- S3_BUCKET_PATH is set to $S3_BUCKET_PATH"
+

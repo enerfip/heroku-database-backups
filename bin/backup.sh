@@ -8,20 +8,28 @@ source ./bin/check_requirements.sh
 HOUR=$(date +"%H")
 MOD=$(expr $HOUR % 6)
 
-if [[ $MOD -gt 0 ]]; then
+if [[ $MOD -gt 0 ]]
+then
   echo "Scheduled only every 6 hours"
+  echo "$MOD is not a multiple of 6. Current hour is $HOUR"
   exit 0
+else
+  echo "Backup time"
 fi
 
 if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
+  echo "- KEEP_ONE_BACKUP_PER_WEEK Yes"
   KEEP_ONE_BACKUP_PER_WEEK=false
 else
+  echo "- KEEP_ONE_BACKUP_PER_WEEK No"
   KEEP_ONE_BACKUP_PER_WEEK=true
 fi
 
 if [[ -z "$KEEP_ONE_BACKUP_PER_DAY" ]]; then
+  echo "- KEEP_ONE_BACKUP_PER_DAY Yes"
   KEEP_ONE_BACKUP_PER_DAY=false
 else
+  echo "- KEEP_ONE_BACKUP_PER_DAY No"
   KEEP_ONE_BACKUP_PER_DAY=true
 fi
 
