@@ -5,7 +5,7 @@
 
 source ./bin/check_requirements.sh
 
-HOUR=$(date +"%H")
+HOUR=$(date +"%-H")
 MOD=$(expr $HOUR % 6)
 
 if [[ -z "$KEEP_ONE_BACKUP_PER_WEEK" ]]; then
