@@ -36,7 +36,7 @@ fi
 echo "- FREQUENCY_HOUR $FREQUENCY_HOUR"
 
 HOUR=$(date +"%-H")
-MOD=$(expr $HOUR % $FREQUENCY_HOUR)
+MOD=$(($HOUR % $FREQUENCY_HOUR))
 
 echo "HOUR is set to $HOUR"
 echo "MOD is set to $MOD"
