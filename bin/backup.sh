@@ -50,3 +50,5 @@ else
 
   BACKUP_FILE_NAME=$BACKUP_FILE_NAME DATABASE=$DATABASE APP=$APP ./bin/do_backup.sh
 fi
+
+curl -d "m=$DATABASE backup was successful" $MONITORING_URL
