@@ -49,6 +49,8 @@ else
   echo "Backup time"
 
   BACKUP_FILE_NAME=$BACKUP_FILE_NAME DATABASE=$DATABASE APP=$APP ./bin/do_backup.sh
+  BACKUP_DONE_URL="https://nosnch.in/$SNITCH_ID"
+  curl -d "m=$DATABASE backup was successful" $BACKUP_DONE_URL
 fi
 
-curl -d "m=$DATABASE backup was successful" $MONITORING_URL
+curl -d "m=$DATABASE backup was executed (maybe no backup processed)" $MONITORING_URL
