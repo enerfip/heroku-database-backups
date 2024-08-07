@@ -13,7 +13,18 @@ if [[ -z "$DATABASE" ]]; then
   echo "Using default DATABASE_URL. If you want to backup a specific database, please provide DATABASE=xxxx while invoking this command"
 fi
 
+if [[ -z "$FILENAME_PREFIX" ]]; then
+  FILENAME_PREFIX="$(date +"%Y-%m-%d-%H-%M")"
+  echo "Using default filename prefix: $FILENAME_PREFIX. If you want to override this value provide FILENAME_PREFIX while invoking this command"
+fi
+
 if [[ -z "$S3_BUCKET_PATH" ]]; then
   echo "Missing S3_BUCKET_PATH variable which must be set the directory in s3 where you would like to store your database backups"
   exit 1
 fi
+
+echo "- APP is set to $APP"
+echo "- DATABASE is set to $DATABASE"
+echo "- FILENAME_PREFIX is set to $FILENAME_PREFIX"
+echo "- S3_BUCKET_PATH is set to $S3_BUCKET_PATH"
+
