@@ -10,5 +10,5 @@ particracy: SNITCH_ID=04c8c3c72b FREQUENCY_HOUR=6 APP=particracy ./bin/backup.sh
 Standard-1X	Hourly at :0
 redash-enerfip: SNITCH_ID=0d174bfdd6 FREQUENCY_HOUR=12 APP=redash-enerfip ./bin/backup.sh
 Standard-1X	Hourly at :0
-enerfip-no-updates: SNITCH_ID=3d4ffa3be7 FREQUENCY_HOUR=6 KEEP_ONE_BACKUP_PER_WEEK=1 APP=enerfip DATABASE=AQUA ./bin/backup.sh
+enerfip-no-updates: SNITCH_ID=3d4ffa3be7 FREQUENCY_HOUR=12 KEEP_ONE_BACKUP_PER_WEEK=1 APP=enerfip DATABASE=AQUA ./bin/backup.sh
 Standard-1X	Hourly at :0
