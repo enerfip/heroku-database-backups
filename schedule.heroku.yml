@@ -2,8 +2,7 @@
 
 agents: SNITCH_ID=617120492b FREQUENCY_HOUR=6 APP=agents-prod ./bin/backup.sh
 Standard-1X	Hourly at :0
-# TODO GREEN (HEROKU_POSTGRESQL_GREEN) -> ??? (???)
-enerfip-follower: SNITCH_ID=70ccf940af FREQUENCY_HOUR=6 APP=enerfip DATABASE=GREEN ./bin/backup.sh
+enerfip-follower: SNITCH_ID=70ccf940af FREQUENCY_HOUR=6 APP=enerfip DATABASE=JADE ./bin/backup.sh
 Standard-1X	Hourly at :0
 ledger-manager: SNITCH_ID=25d44c61b8 FREQUENCY_HOUR=6 APP=ledger-manager-production ./bin/backup.sh
 Standard-1X	Hourly at :0
@@ -11,6 +10,5 @@ particracy: SNITCH_ID=04c8c3c72b FREQUENCY_HOUR=6 APP=particracy ./bin/backup.sh
 Standard-1X	Hourly at :0
 redash-enerfip: SNITCH_ID=0d174bfdd6 FREQUENCY_HOUR=12 APP=redash-enerfip ./bin/backup.sh
 Standard-1X	Hourly at :0
-# TODO NO_UPDATES_DATABASE -> AQUA (HEROKU_POSTGRESQL_AQUA)
-enerfip-no-updates: SNITCH_ID=3d4ffa3be7 FREQUENCY_HOUR=6 KEEP_ONE_BACKUP_PER_WEEK=1 APP=enerfip DATABASE=NO_UPDATES_DATABASE ./bin/backup.sh
+enerfip-no-updates: SNITCH_ID=3d4ffa3be7 FREQUENCY_HOUR=6 KEEP_ONE_BACKUP_PER_WEEK=1 APP=enerfip DATABASE=AQUA ./bin/backup.sh
 Standard-1X	Hourly at :0
