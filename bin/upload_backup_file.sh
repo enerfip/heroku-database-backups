@@ -15,6 +15,8 @@ if [[ "$GPG_PASSPHRASE" ]]; then
   FINAL_FILE_NAME=$FINAL_FILE_NAME.gpg
 fi
 
+echo "** Copying $FINAL_FILE_NAME to s3://$S3_BUCKET_PATH/$APP/$FINAL_FILE_NAME **"
+
 aws s3 cp $FINAL_FILE_NAME s3://$S3_BUCKET_PATH/$APP/$FINAL_FILE_NAME
 
 if [ "$(date +%d)" = 01 ]; then
